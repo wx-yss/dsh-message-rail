@@ -1,5 +1,9 @@
 # dsh-message-rail
 
+[![npm version](https://img.shields.io/npm/v/dsh-message-rail)](https://www.npmjs.com/package/dsh-message-rail)
+[![npm downloads](https://img.shields.io/npm/dm/dsh-message-rail)](https://www.npmjs.com/package/dsh-message-rail)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Codex 风格左侧消息导航轨道 —— 在 DeepSeek Harness Web UI 的长会话里快速定位历史提问。
 
 > Left-side message navigation rail for the DeepSeek Harness Web UI: jump to any past user message in long sessions, Codex-style.
@@ -36,16 +40,16 @@ Codex 风格左侧消息导航轨道 —— 在 DeepSeek Harness Web UI 的长�
 
 ## 安装
 
-从 GitHub 安装（推荐）：
-
-```bash
-dsh plugin --profile web add github:wx-yss/dsh-message-rail
-```
-
-从 npm 安装（若已发布）：
+从 npm 安装（推荐，免构建授权）：
 
 ```bash
 dsh plugin --profile web add dsh-message-rail
+```
+
+从 GitHub 安装：
+
+```bash
+dsh plugin --profile web add github:wx-yss/dsh-message-rail
 ```
 
 本地开发安装：
@@ -84,6 +88,7 @@ dsh plugin --profile web add .
 ├── lib/
 │   ├── index.js         # Host 半部：空 apply 占位
 │   └── client.js        # Client 半部：轨道 UI + 全量加载 + 虚拟滚动 + 跳转
+├── assets/              # README 效果截图
 ├── LICENSE              # MIT
 └── README.md
 ```
