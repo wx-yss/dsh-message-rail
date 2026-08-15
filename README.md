@@ -40,19 +40,19 @@ Codex 风格左侧消息导航轨道 —— 在 DeepSeek Harness Web UI 的长�
 
 ## 安装
 
-### 前提：dsh CLI
+### 第一步：准备 dsh 命令
 
-插件通过 `dsh` 命令安装。若还没有 dsh，两种方式任选：
+插件通过 `dsh` 命令安装。若还没有 dsh（终端提示 `command not found: dsh`）：
 
 ```bash
-# 方式一：全局安装（推荐，之后可直接敲 dsh 命令）
 npm install -g @deepseek-ai/dsh
-
-# 方式二：不全局安装，每次用 npx 前缀
-npx @deepseek-ai/dsh plugin --profile web add dsh-message-rail
 ```
 
-### 安装插件
+> 不想全局安装？也可以不装，把本文所有 `dsh` 命令换成 `npx @deepseek-ai/dsh` 前缀即可，效果相同。
+>
+> 已安装 dsh 的请直接跳到第二步。
+
+### 第二步：安装插件
 
 从 npm 安装（推荐，免构建授权）：
 
@@ -75,7 +75,15 @@ pnpm install
 dsh plugin --profile web add .
 ```
 
-安装后**完整重启** `dsh web`（若 dsh 不在 PATH：`npx @deepseek-ai/dsh web`）。
+### 第三步：重启
+
+安装后**完整重启** dsh web：
+
+```bash
+dsh web
+```
+
+（未全局安装 dsh 时：`npx @deepseek-ai/dsh web`）
 
 ## 使用
 
