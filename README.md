@@ -40,50 +40,51 @@ Codex 风格左侧消息导航轨道 —— 在 DeepSeek Harness Web UI 的长�
 
 ## 安装
 
-### 第一步：准备 dsh 命令
+插件通过 DeepSeek Harness 的 `dsh` 命令安装。下面每个命令都给出两种等价写法：
 
-插件通过 `dsh` 命令安装。若还没有 dsh（终端提示 `command not found: dsh`）：
+- **dsh 形式**：适用于已全局安装 dsh（`npm install -g @deepseek-ai/dsh`）
+- **npx 形式**：无需安装 dsh，临时调用，效果相同——**推荐**（dsh 尚在快速迭代，全局安装非必需）
 
-```bash
-npm install -g @deepseek-ai/dsh
-```
-
-> 不想全局安装？也可以不装，把本文所有 `dsh` 命令换成 `npx @deepseek-ai/dsh` 前缀即可，效果相同。
->
-> 已安装 dsh 的请直接跳到第二步。
-
-### 第二步：安装插件
-
-从 npm 安装（推荐，免构建授权）：
+### 从 npm 安装（推荐，免构建授权）
 
 ```bash
+# dsh 形式
 dsh plugin --profile web add dsh-message-rail
+
+# npx 形式（无需安装 dsh）
+npx @deepseek-ai/dsh plugin --profile web add dsh-message-rail
 ```
 
-从 GitHub 安装：
+### 从 GitHub 安装
 
 ```bash
+# dsh 形式
 dsh plugin --profile web add github:wx-yss/dsh-message-rail
+
+# npx 形式
+npx @deepseek-ai/dsh plugin --profile web add github:wx-yss/dsh-message-rail
 ```
 
-本地开发安装：
+### 本地开发安装
 
 ```bash
 git clone git@github.com:wx-yss/dsh-message-rail.git
 cd dsh-message-rail
 pnpm install
-dsh plugin --profile web add .
+npx @deepseek-ai/dsh plugin --profile web add .
 ```
 
-### 第三步：重启
+### 重启
 
 安装后**完整重启** dsh web：
 
 ```bash
+# dsh 形式
 dsh web
-```
 
-（未全局安装 dsh 时：`npx @deepseek-ai/dsh web`）
+# npx 形式
+npx @deepseek-ai/dsh web
+```
 
 ## 使用
 
