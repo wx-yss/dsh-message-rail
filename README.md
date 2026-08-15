@@ -6,6 +6,16 @@ Codex 风格左侧消息导航轨道 —— 在 DeepSeek Harness Web UI 的长�
 
 > 交互灵感来自 Codex 的消息导航栏（inspired by Codex's message rail）。本插件与 OpenAI 无关联。
 
+## 效果预览
+
+会话左侧的消息导航轨道（悬停刻度显示预览卡，点击跳转到对应消息）：
+
+![轨道悬停预览](assets/rail-hover-preview.png)
+
+轨道贴会话区左缘，与界面主题自适应：
+
+![轨道整体效果](assets/rail-left-edge.png)
+
 ## 功能
 
 - **等距刻度轨道**：会话左侧一条 42px 轨道，每条用户消息一个刻度（固定 11px 间距）；轨道默认高度 550px（约 50 条），屏幕不足时撑满
