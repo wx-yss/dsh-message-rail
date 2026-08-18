@@ -120,7 +120,7 @@ npx @deepseek-ai/dsh web
 
 - 挂载：`shell.overlay` 声明会话级子 seat `message-rail.rail`（`SessionProvider` 桥接，每会话一个实例）
 - 数据：`useSession` 快照 `chat.order` + `chat.nodes`，过滤 `node.kind === 'user'`；分页经 `hasMore` / `loadingOlder` / `session.loadOlder()`
-- 跳转：`[data-conversation-scroll]` + `[data-chat-anchor-key]` DOM 锚点 → `scrollIntoView` + 描边闪烁
+- 跳转：`[data-conversation-scroll]` + `[data-chat-anchor-key]` DOM 锚点，直接驱动滚动容器（贴底时先瞬时 kick 翻掉 ChatView 的贴底跟随位，再平滑 `scrollTo` + 有界重试），到位后描边闪烁
 - 虚拟窗口：`floor(scrollTop / 11) - 12` 到 `ceil((scrollTop + 高度) / 11) + 12`，绝对定位刻度
 
 ## License
