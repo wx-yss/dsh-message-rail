@@ -28,6 +28,7 @@ Codex 风格左侧消息导航轨道 —— 在 DeepSeek Harness Web UI 的长�
 - **全量索引**：后台自动加载整个会话历史（无需手动翻页），轨道显示全部用户消息
 - **虚拟滚动**：任意会话规模下只渲染可见窗口 ±12 条缓冲，DOM 恒定、滚动流畅
 - **渲染门控**：攒够可见上限（50 条）或全部历史加载完才首次渲染，不会出现半成品轨道
+- **加载期联动**：后台加载历史时冻结首批刻度并锁定左侧窗口；首批刻度仍可点击，跳转期间分页短暂停顿，右侧滚动也会更新范围内的当前位置
 - **当前位置**：视口 40% 线最近的消息刻度深色高亮，滚动即知读到哪
 - **智能滚动**：轨道钉在最新刻度，手动滚动后停止跟随；隐藏滚动条、滚轮可用
 - **细节**：少于 2 条用户消息自动隐藏；明暗主题自适应；`prefers-reduced-motion` 降级；键盘可悬停（focus 等价 hover）
@@ -98,7 +99,7 @@ npx @deepseek-ai/dsh web
 ## 已知限制
 
 - 全量加载采用 DSH 的 `loadOlder` 分页（每页 50 条消息，接口无参数可调）；页数上限 400（约 2 万条消息），超长会话超出部分不索引
-- 千条级超长会话完整索引约需数秒，期间轨道刻度持续增长
+- 千条级超长会话完整索引约需数秒；加载期间显示冻结的首批刻度，完成后一次性切换为完整轨道
 - 轨道仅索引用户消息（`kind === 'user'`），不包含助手回复、工具调用、steering/注入上下文
 - 轨道配色跟随 DSH 运行时主题（`--dsw-*` 设计令牌），不支持独立于 DSH 的配色偏好
 - 轨道刻度为虚拟窗口渲染，键盘 Tab 可达（focus 等价悬停）；DOM 锚点（`data-chat-anchor-key` / `data-conversation-scroll`）为 DSH 内部契约，随 DSH 版本可能变化
@@ -120,6 +121,7 @@ npx @deepseek-ai/dsh web
 
 - 挂载：`shell.overlay` 声明会话级子 seat `message-rail.rail`（`SessionProvider` 桥接，每会话一个实例）
 - 数据：`useSession` 快照 `chat.order` + `chat.nodes`，过滤 `node.kind === 'user'`；分页经 `hasMore` / `loadingOlder` / `session.loadOlder()`
+- 加载期：`firstSnapshotRef` 固定首批消息，按消息 key 进行有限双向联动；点击时等待当前分页落地、暂停下一页，跳转稳定后恢复后台加载
 - 跳转：`[data-conversation-scroll]` + `[data-chat-anchor-key]` DOM 锚点，直接驱动滚动容器（贴底时先瞬时 kick 翻掉 ChatView 的贴底跟随位，再平滑 `scrollTo` + 有界重试），到位后描边闪烁
 - 虚拟窗口：`floor(scrollTop / 11) - 12` 到 `ceil((scrollTop + 高度) / 11) + 12`，绝对定位刻度
 
