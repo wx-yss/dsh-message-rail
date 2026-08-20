@@ -106,7 +106,7 @@ npx @deepseek-ai/dsh web
 - 剩余时间只估算历史分页和目标组件准备，不包含后续目标定位；当前按固定准备约 0.2 秒、每页约 0.45 秒校准，属于体验预估而非完成时间承诺
 - 轨道仅索引用户消息（`kind === 'user'`），不包含助手回复、工具调用、steering/注入上下文
 - 轨道配色跟随 DSH 运行时主题（`--dsw-*` 设计令牌），不支持独立于 DSH 的配色偏好
-- 轨道刻度为虚拟窗口渲染，键盘 Tab 可达（focus 等价悬停）；DOM 锚点（`data-chat-anchor-key` / `data-conversation-scroll` / `data-chat-flow`）为 DSH 内部契约，随 DSH 版本可能变化
+- 轨道刻度为虚拟窗口渲染，键盘 Tab 可达（focus 等价悬停）；DOM 锚点（`data-chat-anchor-key` / `data-conversation-scroll` / `data-chat-flow` / `data-slot="conversation.view"`）为 DSH 内部契约，随 DSH 版本可能变化
 
 ## 文件结构
 
