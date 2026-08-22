@@ -100,7 +100,7 @@ npx @deepseek-ai/dsh web
 - 索引页数上限为 400（约 2 万个表层消息）；超过上限时保留右侧当前已加载刻度，不展示不完整的全量索引
 - 点击非常早的刻度时，DSH 的 `loadOlder()` 仍会把中间页面逐步加入右侧且不会自动卸载；这属于 DSH 聊天列表当前的累积渲染限制
 - 剩余时间只估算历史分页和目标组件准备，不包含后续目标定位；当前按固定准备约 0.2 秒、每页约 0.45 秒校准，属于体验预估而非完成时间承诺
-- 轨道仅索引用户消息（`kind === 'user'`），不包含助手回复、工具调用、steering/注入上下文
+- 轨道索引用户消息（`kind === 'user'` 普通提问 与 `kind === 'steering'` 运行中插话），不包含助手回复、工具调用、命令与注入上下文（`kind === 'context'`）
 - 轨道配色跟随 DSH 运行时主题（`--dsw-*` 设计令牌），不支持独立于 DSH 的配色偏好
 - 轨道刻度为虚拟窗口渲染，键盘 Tab 可达（focus 等价悬停）；DOM 锚点（`data-chat-anchor-key` / `data-conversation-scroll` / `data-chat-flow` / `data-time-hover-root` / `data-slot="conversation.view"`）为 DSH 内部契约，随 DSH 版本可能变化
 
@@ -121,7 +121,7 @@ npx @deepseek-ai/dsh web
 
 - 挂载：`shell.overlay` 声明会话级子 seat `message-rail.rail`（`SessionProvider` 桥接，每会话一个实例）
 - 数据：当前窗口读取 `useSession` 的 `chat.order` + `chat.nodes`；完整刻度通过 `connection.api.sessions.history()`（子 Agent 使用 `subagents.history()`）独立建立
-- 索引：只保留用户消息的 `messageId`、`seq`、时间和预览文本，并复现 next-step inbox 状态以排除 steering；中间分页不进入 React 状态
+- 索引：直接保留 `surfaceOp === 'append'` 且 `source.kind === 'user'` 的 `user/message` 记录及其 `messageId`、`seq`、时间和预览文本；中间分页不进入 React 状态
 - 跳转加载：按 `messageId` 判断目标是否已进入右侧；未加载时才调用 `session.loadOlder()`，每页保护可见消息锚点并在命中目标后停止
 - 进度：索引记录每条用户消息距最新页的 `historyPage`；结合右侧已加载深度估算剩余页数，预计超过一秒时立即显示，否则实际等待超过一秒再提示；目标组件就绪后立即关闭，下一帧再定位
 - 跳转：`[data-conversation-scroll]` + `[data-chat-anchor-key]` DOM 锚点；目标已可见时只描边闪烁，否则直接写入 `scrollTop` 瞬时定位，并在两帧内按最新容器几何有界校正
