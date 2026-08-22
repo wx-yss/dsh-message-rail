@@ -121,7 +121,7 @@ npx @deepseek-ai/dsh web
 
 - 挂载：`shell.overlay` 声明会话级子 seat `message-rail.rail`（`SessionProvider` 桥接，每会话一个实例）
 - 数据：当前窗口读取 `useSession` 的 `chat.order` + `chat.nodes`；完整刻度通过 `connection.api.sessions.history()`（子 Agent 使用 `subagents.history()`）独立建立
-- 索引：只保留用户消息的 `messageId`、`seq`、时间和预览文本，并复现 next-step inbox 状态以纳入 steering；中间分页不进入 React 状态
+- 索引：直接保留 `surfaceOp === 'append'` 且 `source.kind === 'user'` 的 `user/message` 记录及其 `messageId`、`seq`、时间和预览文本；中间分页不进入 React 状态
 - 跳转加载：按 `messageId` 判断目标是否已进入右侧；未加载时才调用 `session.loadOlder()`，每页保护可见消息锚点并在命中目标后停止
 - 进度：索引记录每条用户消息距最新页的 `historyPage`；结合右侧已加载深度估算剩余页数，预计超过一秒时立即显示，否则实际等待超过一秒再提示；目标组件就绪后立即关闭，下一帧再定位
 - 跳转：`[data-conversation-scroll]` + `[data-chat-anchor-key]` DOM 锚点；目标已可见时只描边闪烁，否则直接写入 `scrollTop` 瞬时定位，并在两帧内按最新容器几何有界校正
