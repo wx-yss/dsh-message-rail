@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/dsh-message-rail)](https://www.npmjs.com/package/dsh-message-rail)
 [![npm downloads](https://img.shields.io/npm/dm/dsh-message-rail)](https://www.npmjs.com/package/dsh-message-rail)
+[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Codex 风格左侧消息导航轨道 —— 在 DeepSeek Harness Web UI 的长会话里快速定位历史提问。
