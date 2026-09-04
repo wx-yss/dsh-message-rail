@@ -1,10 +1,13 @@
 {
   "name": "dsh-message-rail",
   "description": "Codex 风格左侧消息导航轨道：等距刻度 + 悬停波纹 + 预览浮层 + 点击跳转用户消息",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
+  "scripts": {
+    "test": "node --check lib/index.js && node --check lib/client.js"
+  },
   "exports": {
     ".": "./lib/index.js",
     "./client": "./lib/client.js",
@@ -31,6 +34,23 @@
     },
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dsh": ">=0.1.0-rc.7",
+      "dshReleases": {
+        "0.1.2-alpha.3": "compatible",
+        "0.1.2-alpha.4": "compatible",
+        "0.1.2-alpha.5": "compatible"
+      },
+      "node": ">=22.13.0",
+      "systems": [
+        "macOS",
+        "Linux",
+        "Windows"
+      ],
+      "profiles": [
+        "web"
+      ]
     }
   },
   "peerDependencies": {

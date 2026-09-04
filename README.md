@@ -34,8 +34,10 @@ Codex 风格左侧消息导航轨道 —— 在 DeepSeek Harness Web UI 的长�
 
 ## 兼容性
 
-- DeepSeek Harness `0.1.0-rc.6` 或更高
-- Node.js 22+
+- DeepSeek Harness `>=0.1.0-rc.7`；manifest 已对官方最新三个发行版逐项声明兼容
+- Node.js `>=22.13.0`
+- 系统：macOS、Linux、Windows
+- Profile：`web`
 - 浏览器：Chrome / Edge / Safari / Firefox 最新版
 
 ## 安装
