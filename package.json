@@ -1,7 +1,7 @@
 {
   "name": "dsh-message-rail",
   "description": "Codex 风格左侧消息导航轨道：等距刻度 + 悬停波纹 + 预览浮层 + 点击跳转用户消息",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
@@ -40,7 +40,8 @@
       "dshReleases": {
         "0.1.2-alpha.3": "compatible",
         "0.1.2-alpha.4": "compatible",
-        "0.1.2-alpha.5": "compatible"
+        "0.1.2-alpha.5": "compatible",
+        "0.1.2-rc.1": "compatible"
       },
       "node": ">=22.13.0",
       "systems": [
